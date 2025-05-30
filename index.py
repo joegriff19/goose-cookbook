@@ -1,12 +1,16 @@
 # Import Packages and other files for app
 from app import app, server #NEED THE IMPORT SERVER FOR RENDER
 from dash import dcc, html
-import dash_bootstrap_components as dbc
+from dash_iconify import DashIconify
 from dash.dependencies import Output, Input
+from datetime import date
+import recipe_list
+import dash_bootstrap_components as dbc
+import dash_mantine_components as dmc
 import random
+import time
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
-from datetime import date
 today = date.today()
 
 # padding for the page content
@@ -30,17 +34,19 @@ app.layout = html.Div([
    content
 ])
 
+GITHUB = 'https://github.com/joegriff19'
+LINKEDIN = 'https://www.linkedin.com/in/joseph-m-griffin/'
+
 # index page layout
 index_layout = html.Div(
     children=[
             html.Header(
                 children=[
                     html.Br(),
-                    html.Div(children="🤤", style={"fontSize": "85px"}),
-                    html.Div(children="the hangry app", style={"fontSize": "45px"}),
-                    html.Div(children="powered by JI", style={"fontSize": "20px"}),
-                    html.Div(children="(Joe's Intelligence)", style={"fontSize": "20px"}),
-                    html.Br(),
+                    html.Div(children="🪿", style={"fontSize": "85px"}),
+                    html.Div(children="Goose à la Juliana", style={"fontSize": "45px"}),
+                    html.Div(children="powered by JI", style={"fontSize": "18px"}),
+                    html.Div(children="(Juliana's Intelligence)", style={"fontSize": "18px"}),
                 ],
                 style={
                     'textAlign': 'center',
@@ -48,50 +54,58 @@ index_layout = html.Div(
                     'background': colors['background']
                 }
             ),
-            html.Div(children="Let's decide what to eat so you dont get hangry!"),
             html.Br(),
             html.Div([
-                    "First question: how hangry are you at the moment?",
-                    dcc.Dropdown(['A little bit', 'Very', "I might rip someone's head off"],
-                    searchable=False, id='dropdown')]),
-            html.Br(),
-            html.Div(id='question-response'),
-            html.Br(),
-            html.Div(id='question-response2'),
-            html.Div(),
-            html.Div(id='question-response3'),
-            html.Div(),
-            html.Div(id='question-response4'),
-
-    ], style={'textAlign': 'center',
-              # 'width': '50%',
-              # 'align-items': 'center', 'justify-content': 'center'
-              }
-)
-
-
-# CREATE LISTS
-american = ['Farm Bar', 'SALT Burger', 'Park and Field', 'Au Cheval', 'Small Cheval','Lakefront Restaurant Theatre',
-            'Gemini', 'Hutch', 'LuxBar', 'Gilt Bar', 'Rocks', 'The Whale', "Twin Anchor's", 'Kirkwood', 'Summerhouse Santa Monica']
-asian = ['Sushi san', 'Jinsei Motto', 'Cho Sun Ok', "Penny's", "Andy's Thai", 'Silver Spoon Thai', 'Gorilla Sushi',
-         'Tac Quick', 'Happy Lamb Hot Pot', 'Ramen San']
-bagel = ['Taste of New York', 'Gotham', 'Chicago Bagel Authority', 'The Bagelers']
-chicken = ["GG's", "Parson's", "Cane's", "Harold's", 'Honey Butter Fried Chicken']
-italian = ['Topo Gigio', 'Gioia Ristorante', 'Alla Vita', 'Lardon', 'Mia Francesca', 'Forno Rosso', 'Little Italy',
-           'Eataly', 'Frasca', "Sal's"]
-latino = ['Los 3 Panchos', 'Broken English', 'La Bendición Tamales', 'Bocadillo Market', 'Ba Ba Reeba', 'Bien Me Sabe',
-          'Barrio', 'Los Comales', 'La Vaca', 'Tanta', 'Barcocina', 'Broken English', 'Boquería', 'Cruz Blanca',
-          'Jibaritos', 'El Nuevo Mexicano', 'Tango Sur / Bodega Sur', 'Tuco and Blondie', 'Old Pueblo Cantina',
-          'Pilsen Yards', 'Rica Arepa', "Mima's Taste of Cuba", 'Salsa Picante (Birria)',
-          'Las Tablas', '90 Miles Cuban', 'S & T Steak & Tostada']
-pizza = ['Art of Pizza', 'Dry Hop', "Robert's Pizza", 'Piccolo Sogno', 'Homeslice', "Ranalli's", 'Bonci',
-         "Lou Malnati's", "Vito & Nick's", "Giordano's"]
-salad = ['Sweetgreen', "Dom's", 'Left Coast', 'Just Salad', 'Freshii']
-sandwich = ['BARI', "D'amato's", 'Alpine', "Johnnie's", 'Potbelly', "JJ's"]
-something = ['Avli', 'Athenian Room', "Andro's Taverna", 'Smoke Daddy', 'District Brew Yards', "AJ's", 'Poke Poke',
-             'Pleasant House Pub', "Cleo's", 'Prost', 'The Globe', 'Four Moon Tavern', 'Sheffield', 'Galway Arms',
-             'Demera', 'Tesfa', "Dom's", 'Bodega Sur', 'Tango Sur', 'Aba', 'Time Out Market']
-idk = american + asian + bagel + chicken + italian + latino + pizza + salad + sandwich + something
+                "Select a meal category",
+                dcc.Dropdown(
+                    list(recipe_list.all_options.keys()),
+                    clearable=False,
+                    searchable=False,
+                    id='meals-dd'
+                ),
+                html.Br(),
+                html.Div("Select a recipe"),
+                dcc.Dropdown(id='recipes-dd', options=[], searchable=False, clearable=False),
+                html.Br(),
+            ], style={
+                'textAlign': 'center',
+                'color': '#000080',
+                'max-width': '500px',
+                'margin': 'auto'
+            }
+            ),
+            html.Div([
+                dbc.Spinner(children=[html.Div(id='recipe_info')], size="lg", color="#000080", type="border",
+                            show_initially=False,
+                            spinner_style={"position": "absolute", "top": "-30px"}),
+                html.Br(),
+                html.Div(children=[
+                    dmc.Group(
+                        children=[
+                            dmc.Anchor(
+                                children=[DashIconify(
+                                    icon='line-md:github-loop', width=40, color="#000080")
+                                ],
+                                href=GITHUB
+                            ),
+                            dmc.Anchor(
+                                children=[
+                                    DashIconify(
+                                        icon='ri:linkedin-fill', width=40, color="#000080")
+                                ],
+                                href=LINKEDIN
+                            )
+                        ], position='center'
+                    )
+                ]),
+                html.Br(),
+            ], style={'textAlign': 'center',
+                      'max-width': '900px',
+                      'margin': 'auto',
+                      'color': '#000080',
+                      }
+            ),
+    ])
 
 
 # page callback
@@ -114,51 +128,304 @@ def render_page_content(pathname):
 
 # dropdown callback
 @app.callback(
-    Output('question-response', 'children'),
-    Input('dropdown', 'value')
+    Output('recipes-dd', 'options'),
+    Input('meals-dd', 'value'),
+    prevent_initial_call=True
 )
-def update_output(value):
-    if value == 'A little bit':
-        return 'Bueno! ', 'What kind of food do you want?', dcc.Dropdown(['American', 'Asian', 'Bagel', 'Chicken', 'Italian', 'Mexican / Spanish / Latino', 'Pizza', 'Salad', 'Sandwich', 'Something Fun and Different', 'I dont know'], searchable=False, id='dropdown2')
-    if value == 'Very':
-        return 'Ok! ', 'What kind of food do you want?', dcc.Dropdown(['American', 'Asian', 'Bagel', 'Chicken', 'Italian', 'Mexican / Spanish / Latino', 'Pizza', 'Salad', 'Sandwich', 'Something Fun and Different', 'I dont know'], searchable=False, id='dropdown2')
-    if value == "I might rip someone's head off":
-        return 'Scheiße! ', 'What kind of food do you want?', dcc.Dropdown(['American', 'Asian', 'Bagel', 'Chicken', 'Italian', 'Mexican / Spanish / Latino', 'Pizza', 'Salad', 'Sandwich', 'Something Fun and Different', 'I dont know'], searchable=False, id='dropdown2')
+def set_recipes_options(selected_meal):
+    return [{'label': i, 'value': i} for i in recipe_list.all_options[selected_meal]]
 
-# # dropdown2 callback
-# @app.callback(
-#     Output('question-response2', 'children'),
-#     Input('dropdown2', 'value')
-# )
-# def update_output(value):
-#     if value is not None:
-#         return 'How do you want to get your food?', dcc.Dropdown(['I need food delivered', 'I can pick up food', 'I want to eat out'], id='dropdown3')
 
 # dropdown2 callback
 @app.callback(
-    Output('question-response2', 'children'),
-    Input('dropdown2', 'value')
+    Output('recipe_info', 'children'),
+    Input('recipes-dd', 'value'),
+    prevent_initial_call=True
 )
-def update_output(value):
-    if value == 'American':
-        return 'The solution to your hanger is: ', random.choice(american), '!'
-    if value == 'Asian':
-        return 'The solution to your hanger is: ', random.choice(asian), '!'
-    if value == 'Bagel':
-        return 'The solution to your hanger is: ', random.choice(bagel), '!'
-    if value == 'Chicken':
-        return 'The solution to your hanger is: ', random.choice(chicken), '!'
-    if value == 'Italian':
-        return 'The solution to your hanger is: ', random.choice(italian), '!'
-    if value == 'Mexican / Spanish / Latino':
-        return 'The solution to your hanger is: ', random.choice(latino), '!'
-    if value == 'Pizza':
-        return 'The solution to your hanger is: ', random.choice(italian), '!'
-    if value == 'Salad':
-        return 'The solution to your hanger is: ', random.choice(salad), '!'
-    if value == 'Sandwich':
-        return 'The solution to your hanger is: ', random.choice(sandwich), '!'
-    if value == 'Something Fun and Different':
-        return 'The solution to your hanger is: ', random.choice(something), '!'
-    if value == 'I dont know':
-        return 'The solution to your hanger is: ', random.choice(idk), '!'
+def set_display_children(value):
+    # sleep time for spinner to spin
+    if value is not None:
+        time.sleep(1)
+
+    # Breakfast
+    if value == 'Breakfast1':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Breakfast2':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Breakfast3':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Breakfast4':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Breakfast5':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+
+    # Lunch/Dinner
+    if value == 'LD1':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'LD2':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'LD3':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'LD4':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'LD5':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+
+    # Snack
+    if value == 'Snack1':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Snack2':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Snack3':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Snack4':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Snack5':
+        return (html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+
+    # Bread
+    if value == 'Bread1':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Bread2':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Bread3':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Bread4':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Bread5':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+
+    # Other
+    if value == 'Other1':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Other2':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Other3':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Other4':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Other5':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+
+    # Dessert
+    if value == 'Dessert1':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Dessert2':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Dessert3':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Dessert4':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+    if value == 'Dessert5':
+        return (html.Img(
+            src="assets/test.jpg",
+            style={"width": "100%", "height": "auto"},
+            className="img-fluid"
+        ),
+                html.Br(), html.Br(),
+                'Insert recipe here',
+                html.Br())
+
