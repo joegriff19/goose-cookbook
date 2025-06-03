@@ -42,8 +42,7 @@ index_layout = html.Div(
     children=[
             html.Header(
                 children=[
-                    html.Br(),
-                    html.Div(children="🪿", style={"fontSize": "85px"}),
+                    html.Div(children="🪿", style={"fontSize": "75px"}),
                     html.Div(children="Goose Cookbook", style={"fontSize": "45px"}),
                     html.Div(children="powered by JI", style={"fontSize": "18px"}),
                     html.Div(children="(Juliana's Intelligence)", style={"fontSize": "18px"}),
