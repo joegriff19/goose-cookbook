@@ -44,7 +44,7 @@ index_layout = html.Div(
                 children=[
                     html.Br(),
                     html.Div(children="🪿", style={"fontSize": "85px"}),
-                    html.Div(children="Goose à la Juliana", style={"fontSize": "45px"}),
+                    html.Div(children="Goose Cookbook", style={"fontSize": "45px"}),
                     html.Div(children="powered by JI", style={"fontSize": "18px"}),
                     html.Div(children="(Juliana's Intelligence)", style={"fontSize": "18px"}),
                 ],
@@ -149,283 +149,282 @@ def set_display_children(value):
 
     # Breakfast
     if value == 'Breakfast1':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
     if value == 'Breakfast2':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
     if value == 'Breakfast3':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
     if value == 'Breakfast4':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
     if value == 'Breakfast5':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
 
     # Lunch/Dinner
     if value == 'LD1':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
     if value == 'LD2':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
     if value == 'LD3':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
     if value == 'LD4':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
     if value == 'LD5':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
 
     # Snack
     if value == 'Snack1':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
     if value == 'Snack2':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
     if value == 'Snack3':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
     if value == 'Snack4':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
     if value == 'Snack5':
-        return (html.Img(
+        return ('Insert recipe here',
+                html.Br(), html.Br(),
+                html.Img(
                     src="assets/test.jpg",
                     style={"width": "100%", "height": "auto"},
                     className="img-fluid"
                 ),
-                html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Br(), html.Br())
 
     # Bread
     if value == 'Bread1':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
     if value == 'Bread2':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
     if value == 'Bread3':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
     if value == 'Bread4':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
     if value == 'Bread5':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
 
     # Other
     if value == 'Other1':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
     if value == 'Other2':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
     if value == 'Other3':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
     if value == 'Other4':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
     if value == 'Other5':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
 
     # Dessert
     if value == 'Dessert1':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
     if value == 'Dessert2':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
     if value == 'Dessert3':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
     if value == 'Dessert4':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
     if value == 'Dessert5':
-        return (html.Img(
-            src="assets/test.jpg",
-            style={"width": "100%", "height": "auto"},
-            className="img-fluid"
-        ),
+        return ('Insert recipe here',
                 html.Br(), html.Br(),
-                'Insert recipe here',
-                html.Br())
-
+                html.Img(
+                    src="assets/test.jpg",
+                    style={"width": "100%", "height": "auto"},
+                    className="img-fluid"
+                ),
+                html.Br(), html.Br())
